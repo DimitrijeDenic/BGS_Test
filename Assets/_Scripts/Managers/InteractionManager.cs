@@ -1,4 +1,5 @@
-﻿using BGS._Scripts.Util;
+﻿using System;
+using BGS.Util;
 using TMPro;
 using UnityEngine;
 
@@ -6,12 +7,14 @@ namespace BGS.Managers
 {
     public class InteractionManager : MonoBehaviour
     {
-        public GameObject interactionUi;
+        [SerializeField] private GameObject interactionUi;
         [SerializeField] private TextMeshProUGUI interactionText;
-
+        [SerializeField] private GameObject dialogueBox;
+        
+        
         private TextWriter _textWriter;
         private Coroutine _writerCoroutine;
-
+        
         private void Start()
         {
             _textWriter = new TextWriter(interactionText, .03f);
@@ -32,11 +35,15 @@ namespace BGS.Managers
             interactionUi.SetActive(visible);
         }
 
-        private void InitiateWriter(string text)
+        private void InitiateWriter(string text,Action onWritingCompleted = null)
         {
             if (_writerCoroutine != null)
                 StopCoroutine(_writerCoroutine);
-            _writerCoroutine = StartCoroutine(_textWriter.WriteText(text,()=>_writerCoroutine=null));
+            _writerCoroutine = StartCoroutine(_textWriter.WriteText(text,()=>
+            {
+                _writerCoroutine = null;
+                onWritingCompleted?.Invoke();
+            }));
             SetUi(true);
         }
     }

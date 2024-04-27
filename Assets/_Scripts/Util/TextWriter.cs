@@ -3,7 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-namespace BGS._Scripts.Util
+namespace BGS.Util
 {
     public class TextWriter
     {

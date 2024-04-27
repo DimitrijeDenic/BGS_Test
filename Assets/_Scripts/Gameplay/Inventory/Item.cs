@@ -1,4 +1,5 @@
 ﻿using BGS.Managers;
+using BGS.SO;
 using UnityEngine;
 
 namespace BGS.Gameplay

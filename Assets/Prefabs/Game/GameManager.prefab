@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6289449482534744727}
   - component: {fileID: 3104701784737762666}
   - component: {fileID: 6999723152779976095}
+  - component: {fileID: 2352315333454881731}
   - component: {fileID: 660276684129263659}
   m_Layer: 0
   m_Name: GameManager
@@ -53,6 +54,10 @@ MonoBehaviour:
   inventoryManager: {fileID: 239515377471187974}
   interactionManager: {fileID: 3104701784737762666}
   sceneManager: {fileID: 6999723152779976095}
+  transitionManager: {fileID: 660276684129263659}
+  dialogueManager: {fileID: 2352315333454881731}
+  exitingShop: 0
+  isOutside: 0
 --- !u!114 &239515377471187974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionUi: {fileID: 0}
   interactionText: {fileID: 0}
+  dialogueBox: {fileID: 0}
 --- !u!114 &6999723152779976095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,6 +114,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionSettings: {fileID: 11400000, guid: 057babd6f13132c449650d99e3c4e99c, type: 2}
+--- !u!114 &2352315333454881731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5131550802787010881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 635b8f0dda354844829e1905874e594d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueBox: {fileID: 0}
+  dialogueText: {fileID: 0}
+  dialogueName: {fileID: 0}
 --- !u!114 &660276684129263659
 MonoBehaviour:
   m_ObjectHideFlags: 0

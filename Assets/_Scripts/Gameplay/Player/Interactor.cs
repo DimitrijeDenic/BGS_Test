@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace BGS._Scripts.Gameplay.Player
+namespace BGS.Gameplay
 {
     public class Interactor : MonoBehaviour
     {

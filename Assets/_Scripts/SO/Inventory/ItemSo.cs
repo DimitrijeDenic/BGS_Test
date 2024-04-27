@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BGS.Gameplay
+namespace BGS.SO
 {
     public enum Type
     {

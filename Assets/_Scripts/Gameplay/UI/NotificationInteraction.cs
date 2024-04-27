@@ -1,7 +1,7 @@
 using BGS.Managers;
 using UnityEngine;
 
-namespace BGS
+namespace BGS.Gameplay
 {
     public class NotificationInteraction : MonoBehaviour
     {

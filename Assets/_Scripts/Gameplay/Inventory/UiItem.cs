@@ -1,22 +1,37 @@
 using System;
-using BGS.Gameplay;
 using BGS.Managers;
 using BGS.SO;
+using TMPro;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.UI;
-using Type = BGS.Gameplay.Type;
+using Type = BGS.SO.Type;
 
 namespace BGS
 {
     public class UiItem : MonoBehaviour
     {
         [SerializeField] private Image icon;
+        [SerializeField] private TextMeshProUGUI amountText;
         private ItemSo _data;
         private Vector2 visualOffset;
+        private int amount;
+
+        private Button _button;
+
+        private void Awake()
+        {
+            _button = GetComponent<Button>();
+        }
 
         private void OnEnable()
         {
-            GetComponent<Button>().onClick.AddListener(Use);
+            _button.onClick.AddListener(Use);
+        }
+
+        private void OnDisable()
+        {
+            _button.onClick.RemoveAllListeners();
         }
 
         public void SetUpVisual(ItemSo itemSo)
@@ -43,6 +58,14 @@ namespace BGS
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            
+            GameManager.Instance.inventoryManager.RemoveItem(_data);
+        }
+
+        public void UpdateQuantity(int i)
+        {
+            amount = i;
+            amountText.text = amount.ToString();
         }
     }
 }

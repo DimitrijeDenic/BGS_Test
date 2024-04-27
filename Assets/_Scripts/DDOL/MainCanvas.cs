@@ -1,6 +1,12 @@
-using BGS.Util;
+using UnityEngine;
 
-namespace BGS
+namespace BGS.DDOL
 {
-    public class MainCanvas : GenericSingletonClass<MainCanvas> { }
+    public class MainCanvas : MonoBehaviour
+    {
+        private void Awake()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+    }
 }

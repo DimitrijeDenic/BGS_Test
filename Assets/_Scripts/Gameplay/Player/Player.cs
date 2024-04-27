@@ -1,6 +1,6 @@
 using BGS.Util;
 
-namespace BGS
+namespace BGS.Gameplay
 {
     public class Player : GenericSingletonClass<Player> { }
 }

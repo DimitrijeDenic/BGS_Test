@@ -1,9 +1,8 @@
 using System;
-using BGS.Gameplay;
 using BGS.SO;
 using UnityEngine;
 
-namespace BGS
+namespace BGS.Gameplay
 {
     public class ClothesChanger : MonoBehaviour
     {

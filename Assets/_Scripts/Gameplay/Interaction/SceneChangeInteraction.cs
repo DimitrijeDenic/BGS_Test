@@ -1,7 +1,7 @@
 using BGS.Managers;
 using UnityEngine;
 
-namespace BGS.Gam
+namespace BGS.Gameplay
 {
     public class SceneChangeInteraction : MonoBehaviour
     {

@@ -2,7 +2,7 @@
 using UnityEngine.Pool;
 using Object = UnityEngine.Object;
 
-namespace AreaPlacement
+namespace BGS.Util
 {
     public class Pooler<T> where T : MonoBehaviour
     {

@@ -10,6 +10,8 @@ namespace BGS.Managers
         public InteractionManager interactionManager;
         public SceneManager sceneManager;
         public TransitionManager transitionManager;
+        public DialogueManager dialogueManager;
+        
         public bool exitingShop;
         public bool isOutside;
     }
