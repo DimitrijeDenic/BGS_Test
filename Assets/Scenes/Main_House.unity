@@ -5915,6 +5915,18 @@ PrefabInstance:
       propertyPath: m_ReferenceResolution.y
       value: 1080
       objectReference: {fileID: 0}
+    - target: {fileID: 1104278700767786732, guid: 97e989ada2fbd794da35a63abfe6bb8b, type: 3}
+      propertyPath: m_text
+      value: Go Outside by pressing E !
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104278700767786732, guid: 97e989ada2fbd794da35a63abfe6bb8b, type: 3}
+      propertyPath: m_fontSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104278700767786732, guid: 97e989ada2fbd794da35a63abfe6bb8b, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 2648181305200721294, guid: 97e989ada2fbd794da35a63abfe6bb8b, type: 3}
       propertyPath: m_Pivot.y
       value: 1

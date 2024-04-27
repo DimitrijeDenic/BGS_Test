@@ -1,4 +1,4 @@
-﻿using System.Text;
+﻿using BGS._Scripts.Util;
 using TMPro;
 using UnityEngine;
 
@@ -9,24 +9,34 @@ namespace BGS.Managers
         public GameObject interactionUi;
         [SerializeField] private TextMeshProUGUI interactionText;
 
-        public bool notificationShowing;
-        public float notificationDuration;
+        private TextWriter _textWriter;
+        private Coroutine _writerCoroutine;
 
-        public void SetPrompt(string prompt,KeyCode interactKey)
+        private void Start()
         {
-            interactionText.text = $"{prompt} \n By Pressing {interactKey}!";
-            SetUi(true);
+            _textWriter = new TextWriter(interactionText, .03f);
+        }
 
+        public void SetPrompt(string prompt, KeyCode interactKey)
+        {
+            InitiateWriter($"{prompt} \n By Pressing {interactKey}!");
+        }
+
+        public void SetNotification(string prompt)
+        {
+            InitiateWriter($"{prompt}!");
         }
 
         public void SetUi(bool visible)
         {
             interactionUi.SetActive(visible);
-            notificationShowing = visible;
         }
-        public void SetNotification(string prompt)
+
+        private void InitiateWriter(string text)
         {
-            interactionText.text = $"{prompt}!";
+            if (_writerCoroutine != null)
+                StopCoroutine(_writerCoroutine);
+            _writerCoroutine = StartCoroutine(_textWriter.WriteText(text,()=>_writerCoroutine=null));
             SetUi(true);
         }
     }
