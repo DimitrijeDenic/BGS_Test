@@ -9,7 +9,7 @@ namespace BGS.Managers
         
         public void SwitchScene(string sceneName)
         {
-            GameManager.Instance.transitionManager.Transition(sceneName,transitionSettings,1f);
+            GameManager.Instance.transitionManager.Transition(sceneName,transitionSettings,.2f);
         }
     }
 }
