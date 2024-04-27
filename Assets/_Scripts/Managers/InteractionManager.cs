@@ -9,9 +9,7 @@ namespace BGS.Managers
     {
         [SerializeField] private GameObject interactionUi;
         [SerializeField] private TextMeshProUGUI interactionText;
-        [SerializeField] private GameObject dialogueBox;
-        
-        
+
         private TextWriter _textWriter;
         private Coroutine _writerCoroutine;
         

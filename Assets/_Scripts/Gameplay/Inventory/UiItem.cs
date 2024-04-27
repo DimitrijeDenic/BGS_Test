@@ -2,7 +2,6 @@ using System;
 using BGS.Managers;
 using BGS.SO;
 using TMPro;
-using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Type = BGS.SO.Type;
@@ -14,8 +13,8 @@ namespace BGS
         [SerializeField] private Image icon;
         [SerializeField] private TextMeshProUGUI amountText;
         private ItemSo _data;
-        private Vector2 visualOffset;
-        private int amount;
+        private Vector2 _visualOffset;
+        private int _amount;
 
         private Button _button;
 
@@ -39,10 +38,12 @@ namespace BGS
             _data = itemSo;
             icon.sprite = itemSo.icon;
 
+            icon.rectTransform.localScale = Vector3.one * itemSo.scaleFactor;
+            
             if (itemSo.itemType != Type.Wearable) return;
             
             var w = (WearableSO)itemSo;
-            icon.rectTransform.anchoredPosition += Vector2.down * w.spriteUiOffset;
+            icon.rectTransform.anchoredPosition = Vector2.down * w.spriteUiOffset;
 
         }
         protected virtual void Use()
@@ -53,19 +54,18 @@ namespace BGS
                     GameManager.Instance.wearableManager.SetClothes((WearableSO)_data);
                     break;
                 case Type.Regular:
+                    GameManager.Instance.inventoryManager.RemoveItem(_data);
                     print(_data.name);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            
-            GameManager.Instance.inventoryManager.RemoveItem(_data);
         }
 
         public void UpdateQuantity(int i)
         {
-            amount = i;
-            amountText.text = amount.ToString();
+            _amount = i;
+            amountText.text = _amount.ToString();
         }
     }
 }

@@ -15,36 +15,36 @@ namespace BGS.Managers
         private readonly Dictionary<ItemSo, UiItem> _uiItems = new();
 
         private readonly UiItemPooler _uiPooler = new();
-        
+
         public bool homeChestOpened;
 
         private void Start()
         {
-            _uiPooler.InitPooler(itemPrefab,content);
+            _uiPooler.InitPooler(itemPrefab, content);
         }
 
         public void AddItem(ItemSo item)
         {
+            if (item.icon == null) return;
+
             if (_itemsInInventory.ContainsKey(item))
             {
                 _itemsInInventory[item]++;
                 _uiItems[item].UpdateQuantity(_itemsInInventory[item]);
-
             }
             else
             {
-                var i = /*Instantiate(itemPrefab, content)*/ _uiPooler.GetItem();
+                var i = _uiPooler.GetItem();
                 _itemsInInventory.Add(item, 1);
                 i.SetUpVisual(item);
                 _uiItems.Add(item, i);
             }
-
         }
-        
+
         public void RemoveItem(ItemSo item)
         {
             if (!_itemsInInventory.ContainsKey(item)) return;
-            
+
             if (_itemsInInventory[item] > 1)
             {
                 _itemsInInventory[item]--;
@@ -56,6 +56,12 @@ namespace BGS.Managers
                 _uiPooler.ReleaseItem(_uiItems[item]);
                 _uiItems.Remove(item);
             }
+        }
+
+        public void ReplaceItem(ItemSo toEquip, ItemSo toStore)
+        {
+            RemoveItem(toEquip);
+            AddItem(toStore);
         }
 
         private void Update()

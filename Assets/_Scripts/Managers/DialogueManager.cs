@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using BGS.Gameplay;
 using BGS.Util;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace BGS.Managers
 {
@@ -13,6 +15,7 @@ namespace BGS.Managers
         private Coroutine _writerCoroutine;
 
         [SerializeField] private GameObject dialogueBox;
+        [SerializeField] private List<GameObject> characters;
         [SerializeField] private TextMeshProUGUI dialogueText,dialogueName;
         private void Start()
         {
@@ -23,6 +26,8 @@ namespace BGS.Managers
         public void StartDialogue(DialogueSO dialogueSo)
         {
             _sentences.Clear();
+            characters.ForEach(c => c.SetActive(c.name == dialogueSo.dialoguePersonName));
+
             foreach (var s in dialogueSo.sentences)
             {
                 _sentences.Enqueue(s);
