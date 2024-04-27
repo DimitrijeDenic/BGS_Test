@@ -7,7 +7,7 @@ namespace BGS
 {
     public class Interactable : MonoBehaviour
     {
-        [SerializeField] private UnityEvent onInteract;
+        [SerializeField] protected UnityEvent onInteract;
         [SerializeField] private string prompt;
         [SerializeField] private KeyCode interactKey = KeyCode.E;
         private void OnTriggerEnter2D(Collider2D other)
@@ -15,7 +15,9 @@ namespace BGS
             if(!other.TryGetComponent(out Interactor interactor)) return;    
 
             interactor.SetInteraction(onInteract,interactKey);
-            SetUi(true);
+            
+            GameManager.Instance.interactionManager.SetPrompt(prompt,interactKey);
+
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -23,13 +25,9 @@ namespace BGS
             if(!other.TryGetComponent(out Interactor interactor)) return;
 
             interactor.RemoveInteraction();
-            SetUi(false);
+            GameManager.Instance.interactionManager.SetUi(false);
         }
 
-        private void SetUi(bool visible)
-        {
-            GameManager.Instance.interactionManager.interactionUi.SetActive(visible);
-            GameManager.Instance.interactionManager.SetPrompt(prompt,interactKey);
-        }
+       
     }
 }

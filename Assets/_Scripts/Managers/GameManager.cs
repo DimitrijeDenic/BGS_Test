@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using BGS.Managers;
 using BGS.Util;
-using UnityEngine;
+using EasyTransition;
 
 namespace BGS.Managers
 {
@@ -11,6 +8,7 @@ namespace BGS.Managers
         public WearableManager wearableManager;
         public InventoryManager inventoryManager;
         public InteractionManager interactionManager;
-        
+        public SceneManager sceneManager;
+        public TransitionManager transitionManager;
     }
 }

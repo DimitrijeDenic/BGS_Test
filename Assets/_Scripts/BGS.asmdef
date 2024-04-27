@@ -2,7 +2,8 @@
     "name": "BGS",
     "rootNamespace": "BGS",
     "references": [
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:dff3e874493766542a631baab51118c4"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

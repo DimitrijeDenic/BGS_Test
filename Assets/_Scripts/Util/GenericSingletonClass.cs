@@ -30,7 +30,7 @@ namespace BGS.Util
             if (_instance == null)
             {
                 _instance = this as T;
-                DontDestroyOnLoad(this.gameObject);
+                DontDestroyOnLoad(gameObject);
             }
             else
             {

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
@@ -16,21 +15,7 @@ namespace EasyTransition
         public UnityAction onTransitionBegin;
         public UnityAction onTransitionCutPointReached;
         public UnityAction onTransitionEnd;
-
-        private static TransitionManager instance;
-
-        private void Awake()
-        {
-            instance = this;
-        }
-
-        public static TransitionManager Instance()
-        {
-            if (instance == null)
-                Debug.LogError("You tried to access the instance before it exists.");
-
-            return instance;
-        }
+        
 
         /// <summary>
         /// Starts a transition without loading a new level.
@@ -57,6 +42,7 @@ namespace EasyTransition
         /// <param name="startDelay">The delay before the transition starts.</param>
         public void Transition(string sceneName, TransitionSettings transition, float startDelay)
         {
+            print(transition.name + " " + runningTransition);
             if (transition == null || runningTransition)
             {
                 Debug.LogError("You have to assing a transition.");
@@ -117,6 +103,8 @@ namespace EasyTransition
             yield return new WaitForSecondsRealtime(transitionSettings.destroyTime);
 
             onTransitionEnd?.Invoke();
+            
+            runningTransition = false;
         }
 
         IEnumerator Timer(int sceneIndex, float startDelay, TransitionSettings transitionSettings)
@@ -141,6 +129,8 @@ namespace EasyTransition
             yield return new WaitForSecondsRealtime(transitionSettings.destroyTime);
 
             onTransitionEnd?.Invoke();
+            
+            runningTransition = false;
         }
 
         IEnumerator Timer(float delay, TransitionSettings transitionSettings)
