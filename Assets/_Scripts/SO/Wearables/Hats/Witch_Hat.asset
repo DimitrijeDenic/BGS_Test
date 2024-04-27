@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 089b4cc60daa4b92b0f56252545eab77, type: 3}
+  m_Name: Witch_Hat
+  m_EditorClassIdentifier: 
+  icon: {fileID: -56412774, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+  itemType: 0
+  price: 0
+  spriteAnimationsList:
+  - name: walk_up
+    animations:
+    - {fileID: 520521514, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+    - {fileID: -727377426, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+    - {fileID: -1510888253, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+    - {fileID: 426332309, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+    - {fileID: 960308865, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+    - {fileID: 109924879, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+  - name: walk_down
+    animations:
+    - {fileID: 943808255, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+    - {fileID: 516592648, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+    - {fileID: -910360653, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+    - {fileID: -1282426230, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+    - {fileID: 1336737803, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+    - {fileID: -1185379951, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+  - name: walk_left
+    animations:
+    - {fileID: 245261598, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+    - {fileID: -1279186555, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+    - {fileID: -859554133, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+    - {fileID: 961666353, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+    - {fileID: -567267702, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+    - {fileID: 2057044257, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+  - name: walk_right
+    animations:
+    - {fileID: -599909832, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+    - {fileID: 1656229492, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+    - {fileID: -426541940, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+    - {fileID: -1063264479, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+    - {fileID: 246616740, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+    - {fileID: -1239777755, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+  - name: idle
+    animations:
+    - {fileID: -56412774, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
+  wearableType: 2
+  spriteUiOffset: 47
