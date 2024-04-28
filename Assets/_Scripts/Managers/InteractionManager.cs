@@ -35,7 +35,7 @@ namespace BGS.Managers
 
         public void SetPrompt(string prompt, KeyCode interactKey)
         {
-            InitiateWriter($"{prompt} \n By Pressing {interactKey}!");
+            InitiateWriter($"{prompt} \n By Pressing '{interactKey}'!");
         }
 
         public void SetNotification(string prompt)

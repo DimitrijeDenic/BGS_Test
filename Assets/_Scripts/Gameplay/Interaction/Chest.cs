@@ -25,6 +25,7 @@ namespace BGS.Gameplay
             GameManager.Instance.inventoryManager.homeChestOpened = true;
             _interactable.SetInteractionAvailable(false);
             GameManager.Instance.inventoryManager.AddItem(coinItem);
+            GameManager.Instance.interactionManager.SetTimedNotification("Check inventory by pressing 'I'");
         }
 
         public void SetChestValue()

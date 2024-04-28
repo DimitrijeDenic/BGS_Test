@@ -1,6 +1,7 @@
 using System;
 using BGS.Util;
 using EasyTransition;
+using UnityEngine;
 
 namespace BGS.Managers
 {
@@ -22,5 +23,10 @@ namespace BGS.Managers
         public bool firstLoad = true;
 
         public static Action OnSceneChanged;
+
+        public void Quit()
+        {
+            Application.Quit();
+        }
     }
 }

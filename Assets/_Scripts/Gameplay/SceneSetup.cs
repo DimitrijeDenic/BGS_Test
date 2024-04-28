@@ -10,7 +10,6 @@ namespace BGS.Gameplay
         [SerializeField] private Vector2 playerStartPos1, playerStartPos2;
         [SerializeField] private bool camFollowPlayer;
         [SerializeField] private UnityEvent customSetup;
-
         private void Start()
         {
             if (GameManager.Instance.firstLoad)
