@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using BGS.Util;
 using TMPro;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace BGS.Managers
 
         private TextWriter _textWriter;
         private Coroutine _writerCoroutine;
-        
+
         private void Start()
         {
             _textWriter = new TextWriter(interactionText, .03f);
@@ -33,16 +34,23 @@ namespace BGS.Managers
             interactionUi.SetActive(visible);
         }
 
-        private void InitiateWriter(string text,Action onWritingCompleted = null)
+        private void InitiateWriter(string text, Action onWritingCompleted = null)
         {
             if (_writerCoroutine != null)
                 StopCoroutine(_writerCoroutine);
-            _writerCoroutine = StartCoroutine(_textWriter.WriteText(text,()=>
+            _writerCoroutine = StartCoroutine(_textWriter.WriteText(text, () =>
             {
                 _writerCoroutine = null;
                 onWritingCompleted?.Invoke();
             }));
             SetUi(true);
+        }
+
+        public async void SetTimedNotification(string prompt)
+        {
+            SetNotification(prompt);
+            await Task.Delay(3000);
+           Stop
         }
     }
 }

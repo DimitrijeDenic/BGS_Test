@@ -1,5 +1,6 @@
 using BGS.Managers;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace BGS.Gameplay
 {
@@ -7,7 +8,7 @@ namespace BGS.Gameplay
     {
         [SerializeField] private DialogueSO dialogueSo;
         private Interactable _interactable;
-
+        [SerializeField] private UnityEvent onDialogueEnd;
         private void Start()
         {
             _interactable = GetComponent<Interactable>();
@@ -15,7 +16,7 @@ namespace BGS.Gameplay
 
         public void StartDialogue()
         {
-            GameManager.Instance.dialogueManager.StartDialogue(dialogueSo);
+            GameManager.Instance.dialogueManager.StartDialogue(dialogueSo,onDialogueEnd);
             _interactable.StopInteracting();
         }
     }

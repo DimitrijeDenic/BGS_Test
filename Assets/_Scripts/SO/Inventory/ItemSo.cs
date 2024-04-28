@@ -13,7 +13,7 @@ namespace BGS.SO
     {
         public Sprite icon;
         public Type itemType;
-        public int price;
+        public float price;
         public float scaleFactor = 1;
     }
 }

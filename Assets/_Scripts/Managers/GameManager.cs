@@ -11,8 +11,11 @@ namespace BGS.Managers
         public SceneManager sceneManager;
         public TransitionManager transitionManager;
         public DialogueManager dialogueManager;
+        public ShopManager shopManager;
+        public EconomyManager economyManager;
         
         public bool exitingShop;
         public bool isOutside;
+        public bool uiActive;
     }
 }

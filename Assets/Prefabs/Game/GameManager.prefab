@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 3104701784737762666}
   - component: {fileID: 6999723152779976095}
   - component: {fileID: 2352315333454881731}
+  - component: {fileID: 5346326390803818433}
+  - component: {fileID: 1797902901492200113}
   - component: {fileID: 660276684129263659}
   m_Layer: 0
   m_Name: GameManager
@@ -56,8 +58,11 @@ MonoBehaviour:
   sceneManager: {fileID: 6999723152779976095}
   transitionManager: {fileID: 660276684129263659}
   dialogueManager: {fileID: 2352315333454881731}
+  shopManager: {fileID: 5346326390803818433}
+  economyManager: {fileID: 0}
   exitingShop: 0
   isOutside: 0
+  uiActive: 0
 --- !u!114 &239515377471187974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,6 +78,7 @@ MonoBehaviour:
   content: {fileID: 0}
   itemPrefab: {fileID: 6004714053761389054, guid: 28f1bc31505d62c4aaa31a4d6a3c3da2, type: 3}
   inventoryUi: {fileID: 0}
+  homeChestOpened: 0
 --- !u!114 &6289449482534744727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +106,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionUi: {fileID: 0}
   interactionText: {fileID: 0}
-  dialogueBox: {fileID: 0}
 --- !u!114 &6999723152779976095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,8 +132,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueBox: {fileID: 0}
+  characters:
+  - {fileID: 0}
+  - {fileID: 0}
   dialogueText: {fileID: 0}
   dialogueName: {fileID: 0}
+--- !u!114 &5346326390803818433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5131550802787010881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb28961d15b946e695340f4a851a6251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopPanel: {fileID: 0}
+  buyableItems: []
+  shopContent: {fileID: 0}
+--- !u!114 &1797902901492200113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5131550802787010881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5195d3a72d9491fb41e79abfc62fffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  money: 0
+  moneyText: {fileID: 0}
 --- !u!114 &660276684129263659
 MonoBehaviour:
   m_ObjectHideFlags: 0

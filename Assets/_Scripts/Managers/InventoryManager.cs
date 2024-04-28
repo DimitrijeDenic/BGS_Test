@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using BGS.Gameplay;
 using BGS.SO;
+using BGS.Util;
 using UnityEngine;
 
 namespace BGS.Managers
@@ -9,21 +10,32 @@ namespace BGS.Managers
     {
         [SerializeField] private RectTransform content;
         [SerializeField] private UiItem itemPrefab;
-        [SerializeField] private GameObject inventoryUi;
+        public GameObject inventoryUi;
 
-        private readonly Dictionary<ItemSo, int> _itemsInInventory = new();
-        private readonly Dictionary<ItemSo, UiItem> _uiItems = new();
+        private Dictionary<ItemSo, int> _itemsInInventory = new();
+        private Dictionary<ItemSo, UiItem> _uiItems = new();
 
-        private readonly UiItemPooler _uiPooler = new();
+        public UiItemPooler UIPooler = new();
 
         public bool homeChestOpened;
 
-        private void Start()
+        private ItemUtil _itemUtil;
+
+        private void Awake()
         {
-            _uiPooler.InitPooler(itemPrefab, content);
+            UIPooler.InitPooler(itemPrefab, content);
         }
 
-        public void AddItem(ItemSo item)
+        private void Start()
+        {
+            _itemUtil = new ItemUtil(ref _uiItems, ref _itemsInInventory, ref UIPooler, content,false);
+        }
+
+        public void AddItem(ItemSo so) => _itemUtil.AddItem(so);
+        public void RemoveItem(ItemSo so) => _itemUtil.RemoveItem(so);
+        public void ReplaceItem(ItemSo toEquip, ItemSo toStore) => _itemUtil.ReplaceItem(toEquip, toStore);
+        
+        /*public void AddItem(ItemSo item)
         {
             if (item.icon == null) return;
 
@@ -34,9 +46,8 @@ namespace BGS.Managers
             }
             else
             {
-                var i = _uiPooler.GetItem();
+                var i = UIPooler.GetItem(item,content);
                 _itemsInInventory.Add(item, 1);
-                i.SetUpVisual(item);
                 _uiItems.Add(item, i);
             }
         }
@@ -53,7 +64,7 @@ namespace BGS.Managers
             else
             {
                 _itemsInInventory.Remove(item);
-                _uiPooler.ReleaseItem(_uiItems[item]);
+                UIPooler.ReleaseItem(_uiItems[item]);
                 _uiItems.Remove(item);
             }
         }
@@ -62,7 +73,7 @@ namespace BGS.Managers
         {
             RemoveItem(toEquip);
             AddItem(toStore);
-        }
+        }*/
 
         private void Update()
         {

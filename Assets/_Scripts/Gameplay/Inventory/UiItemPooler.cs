@@ -1,4 +1,5 @@
-﻿using BGS.Util;
+﻿using BGS.SO;
+using BGS.Util;
 using UnityEngine;
 
 namespace BGS.Gameplay
@@ -18,9 +19,13 @@ namespace BGS.Gameplay
             return ui;
         }
 
-        public UiItem GetItem()
+        public UiItem GetItem(ItemSo so,RectTransform newParent,bool inShop)
         {
-            return Get();
+            var item = Get();
+            item.transform.SetParent(newParent);
+            item.SetUpVisual(so);
+            item.inShop = inShop;
+            return item;
         }
 
         public void ReleaseItem(UiItem item)

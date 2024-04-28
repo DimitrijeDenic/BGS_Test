@@ -1,3 +1,4 @@
+using BGS.Managers;
 using UnityEngine;
 
 namespace BGS.Gameplay
@@ -20,6 +21,8 @@ namespace BGS.Gameplay
 
         private void FixedUpdate()
         {
+            if(GameManager.Instance.uiActive) return;
+            
             _rigidbody2D.MovePosition(_rigidbody2D.position + _input * (moveSpeed * Time.fixedDeltaTime));
         }
 
