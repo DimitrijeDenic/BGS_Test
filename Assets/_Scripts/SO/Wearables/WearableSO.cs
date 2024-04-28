@@ -25,6 +25,8 @@ namespace BGS.SO
             new SpriteAnimations("idle")
         };
 
+        public List<AnimationClip> animationClips = new(5);
+
         public WearableType wearableType;
         public float spriteUiOffset;
     }

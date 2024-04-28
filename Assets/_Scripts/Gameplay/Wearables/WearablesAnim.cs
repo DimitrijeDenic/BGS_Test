@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using BGS.SO;
 using BGS.Util;
 #if UNITY_EDITOR
@@ -15,7 +17,7 @@ namespace BGS.Gameplay
         private Animator _animator;
         private readonly AnimatorUtil _animatorUtil = new();
         private PlayerMovement _movement;
-        private void Awake()
+        private void Start()
         {
             _animator = GetComponent<Animator>();
             _movement = GetComponentInParent<PlayerMovement>();
@@ -25,13 +27,36 @@ namespace BGS.Gameplay
         {
             _animatorUtil.SetWalkAnimatorState(_animator, _movement);
         }
-
-        public void SwapSpritesInAnimations()
+        public void SwapSpritesInAnimations(WearableSO so)
         {
-            SwapSpritesInAnimations(animationSheet);
+            if (_animator == null)
+            {
+                Debug.LogError("Animator not assigned!");
+                return;
+            }
+
+            
+            var aoc = new AnimatorOverrideController(_animator.runtimeAnimatorController);
+            var anims = new List<KeyValuePair<AnimationClip, AnimationClip>>();
+            for (var i = 0; i < aoc.animationClips.Length; i++)
+            {
+                var a = aoc.animationClips[i];
+                anims.Add(new KeyValuePair<AnimationClip, AnimationClip>(a, so.animationClips[i]));
+            }
+
+            aoc.ApplyOverrides(anims);
+            _animator.runtimeAnimatorController = aoc;
         }
         
-        public void SwapSpritesInAnimations(WearableSO so)
+        #region Editor
+
+#if UNITY_EDITOR
+        public void SwapSpritesInAnimationsEditor()
+        {
+            SwapSpritesInAnimationsEditor(animationSheet);
+        }
+        
+        public void SwapSpritesInAnimationsEditor(WearableSO so)
         {
             if (_animator == null)
             {
@@ -46,39 +71,63 @@ namespace BGS.Gameplay
             for (var i = 0; i < clips.Length; i++)
             {
                 var clip = clips[i];
-                SwapSpritesInAnimation(clip, animationSheet.spriteAnimationsList[i]);
+
+                ExportModifiedAnimationClip(clip, animationSheet.spriteAnimationsList[i]);
+                
             }
         }
-
-        private void SwapSpritesInAnimation(AnimationClip animationClip, SpriteAnimations sprites)
+        private void ExportModifiedAnimationClip(AnimationClip originalClip, SpriteAnimations sprites)
         {
-            if (animationClip == null)
+            if (originalClip == null)
             {
-                Debug.LogError("AnimationClip is null!");
+                Debug.LogError("Original AnimationClip is null!");
                 return;
             }
 
-            var clipSettings = AnimationUtility.GetAnimationClipSettings(animationClip);
+            AnimationClip modifiedClip = new AnimationClip();
+            AnimationClipSettings clipSettings = AnimationUtility.GetAnimationClipSettings(originalClip);
 
-            var curveBindings = AnimationUtility.GetObjectReferenceCurveBindings(animationClip);
+            var curveBindings = AnimationUtility.GetObjectReferenceCurveBindings(originalClip);
 
             foreach (var binding in curveBindings)
             {
-                if (binding.propertyName != "m_Sprite") continue;
+                if (binding.propertyName != "m_Sprite")
+                    continue;
 
-                var keyframes = AnimationUtility.GetObjectReferenceCurve(animationClip, binding);
+                ObjectReferenceKeyframe[] keyframes = AnimationUtility.GetObjectReferenceCurve(originalClip, binding);
 
-                for (var i = 0; i < keyframes.Length; i++)
+                ObjectReferenceKeyframe[] modifiedKeyframes = new ObjectReferenceKeyframe[keyframes.Length];
+
+                for (int i = 0; i < keyframes.Length; i++)
                 {
-                    var spriteIndex = Mathf.Clamp(i, 0, sprites.animations.Count - 1);
-                    keyframes[i].value = sprites.animations[spriteIndex];
+                    int spriteIndex = Mathf.Clamp(i, 0, sprites.animations.Count - 1);
+                    modifiedKeyframes[i] = new ObjectReferenceKeyframe();
+                    modifiedKeyframes[i].time = keyframes[i].time;
+                    modifiedKeyframes[i].value = sprites.animations[spriteIndex];
                 }
 
-                AnimationUtility.SetObjectReferenceCurve(animationClip, binding, keyframes);
+                AnimationUtility.SetObjectReferenceCurve(modifiedClip, binding, modifiedKeyframes);
             }
 
-            AnimationUtility.SetAnimationClipSettings(animationClip, clipSettings);
+            AnimationUtility.SetAnimationClipSettings(modifiedClip, clipSettings);
+
+            // Create a new folder
+            string originalClipPath = AssetDatabase.GetAssetPath(originalClip);
+            string directory = System.IO.Path.GetDirectoryName(originalClipPath);
+            string newFolder = directory + "/ModifiedClips_" + DateTime.Now.ToString("yyyyMMddHHmmss");
+            System.IO.Directory.CreateDirectory(newFolder);
+
+            // Generate a unique name for the modified clip
+            string newClipName = originalClip.name + "_Modified.anim";
+            string newClipPath = newFolder + "/" + newClipName;
+
+            AssetDatabase.CreateAsset(modifiedClip, newClipPath);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
         }
+        
+#endif
+        #endregion
     }
 
 #if UNITY_EDITOR
@@ -92,7 +141,7 @@ namespace BGS.Gameplay
 
             if (GUILayout.Button("Swap Sprites in Animations"))
             {
-                wearablesAnim.SwapSpritesInAnimations();
+              //  wearablesAnim.SwapSpritesInAnimationsEditor();
             }
         }
     }

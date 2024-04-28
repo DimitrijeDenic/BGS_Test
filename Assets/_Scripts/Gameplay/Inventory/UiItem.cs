@@ -1,9 +1,7 @@
 using System;
-using System.Net.Mime;
 using BGS.Managers;
 using BGS.SO;
 using BGS.Util;
-using GluonGui.WorkspaceWindow.Views.WorkspaceExplorer;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

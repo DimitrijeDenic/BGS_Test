@@ -52,5 +52,11 @@ MonoBehaviour:
   - name: idle
     animations:
     - {fileID: -2105135931, guid: 60237da03a5f8d94a9ec977caa3bd493, type: 3}
+  animationClips:
+  - {fileID: 7400000, guid: 4fd563294e5713c4d8a2bd2e7bff6055, type: 2}
+  - {fileID: 7400000, guid: 351f488ee1b0e254d94d0c6404966d25, type: 2}
+  - {fileID: 7400000, guid: 8d797885ac329eb4d985cdd1378ec7ab, type: 2}
+  - {fileID: 7400000, guid: 4a5940519c3c15245aff91edfb471290, type: 2}
+  - {fileID: 7400000, guid: 57bb4c9cd50cc194283f391ae7de6f18, type: 2}
   wearableType: 0
   spriteUiOffset: -10
