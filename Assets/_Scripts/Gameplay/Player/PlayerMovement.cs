@@ -1,4 +1,3 @@
-using System;
 using BGS.Managers;
 using UnityEngine;
 
@@ -32,6 +31,7 @@ namespace BGS.Gameplay
         private void Update()
         {
             _input = GetInput();
+            
             if (_input != Vector2.zero && !stepSource.isPlaying)
             {
                 stepSource.Play();
@@ -44,15 +44,13 @@ namespace BGS.Gameplay
 
         private void FixedUpdate()
         {
-            if(GameManager.Instance.uiActive) return;
-            
-            
+            if(GameManager.Instance.uiActive || _input == Vector2.zero) return;
             _rigidbody2D.MovePosition(_rigidbody2D.position + _input * (moveSpeed * Time.fixedDeltaTime));
         }
 
         public Vector2 GetInput()
         {
-            return new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+            return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         }
     }
 }
