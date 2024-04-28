@@ -34,7 +34,6 @@ namespace BGS.Managers
 
             foreach (var s in dialogueSo.sentences)
             {
-                print(s);
                 _sentences.Enqueue(s);
             }
             
