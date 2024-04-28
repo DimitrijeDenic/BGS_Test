@@ -24,6 +24,7 @@ namespace BGS
 
         public bool inShop;
         private bool _shopOpen;
+
         private void Awake()
         {
             _button = GetComponent<Button>();
@@ -71,7 +72,7 @@ namespace BGS
                     GameManager.Instance.wearableManager.SetClothes((WearableSO)_data);
                     break;
                 case Type.Regular:
-                    GameManager.Instance.interactionManager.SetTimedNotification();
+                    GameManager.Instance.interactionManager.SetTimedNotification("You can sell this in the shop");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

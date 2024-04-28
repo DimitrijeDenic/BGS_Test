@@ -1,3 +1,4 @@
+using System;
 using BGS.Util;
 using EasyTransition;
 
@@ -13,9 +14,13 @@ namespace BGS.Managers
         public DialogueManager dialogueManager;
         public ShopManager shopManager;
         public EconomyManager economyManager;
-        
+        public AudioManager audioManager;
+
         public bool exitingShop;
         public bool isOutside;
         public bool uiActive;
+        public bool firstLoad = true;
+
+        public static Action OnSceneChanged;
     }
 }

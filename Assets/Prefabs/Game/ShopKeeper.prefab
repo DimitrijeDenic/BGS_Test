@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2836528014137650274}
   - component: {fileID: 6312656005223925444}
-  - component: {fileID: 1293305653053013379}
   - component: {fileID: 3123181174746811123}
   - component: {fileID: 3277264598370895936}
   - component: {fileID: 5276878993939335610}
+  - component: {fileID: 550623502570501052}
   m_Layer: 0
   m_Name: ShopKeeper
   m_TagString: Untagged
@@ -88,51 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1293305653053013379
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7921707975432548431}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0393939, y: 0.019696712}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 3}
-    newSize: {x: 1, y: 0.8828125}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.9363756, y: 2.251524}
-  m_EdgeRadius: 0
 --- !u!61 &3123181174746811123
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -222,4 +177,28 @@ MonoBehaviour:
   dialogueSo: {fileID: 11400000, guid: 702a5d965ad725a408ee3022f5ff5154, type: 2}
   onDialogueEnd:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 550623502570501052}
+        m_TargetAssemblyTypeName: BGS.ShopKeeper, BGS
+        m_MethodName: OpenShopAndInventory
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &550623502570501052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7921707975432548431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100926281787f974793efdbdbfdf7588, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

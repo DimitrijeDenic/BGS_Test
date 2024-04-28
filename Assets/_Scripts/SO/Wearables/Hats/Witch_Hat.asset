@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: -56412774, guid: ac0f2627dd0eb364f867a34449d36dc8, type: 3}
   itemType: 0
-  price: 5000
+  price: 1500
   scaleFactor: 1
   spriteAnimationsList:
   - name: walk_up

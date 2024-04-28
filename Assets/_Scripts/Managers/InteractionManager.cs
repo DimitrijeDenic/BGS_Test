@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using BGS.Util;
 using TMPro;
 using UnityEngine;
@@ -14,9 +13,24 @@ namespace BGS.Managers
         private TextWriter _textWriter;
         private Coroutine _writerCoroutine;
 
+        private Timer _timer;
+
         private void Start()
         {
             _textWriter = new TextWriter(interactionText, .03f);
+            _timer = new Timer(3);
+            _timer.OnTimerEnd += HideNotification;
+        }
+
+        private void OnDestroy()
+        {
+            if(_timer==null) return;
+            _timer.OnTimerEnd -= HideNotification;
+        }
+
+        private void Update()
+        {
+            _timer.Tick(Time.deltaTime);
         }
 
         public void SetPrompt(string prompt, KeyCode interactKey)
@@ -46,11 +60,21 @@ namespace BGS.Managers
             SetUi(true);
         }
 
-        public async void SetTimedNotification(string prompt)
+        public void SetTimedNotification(string prompt)
         {
             SetNotification(prompt);
-            await Task.Delay(3000);
-           Stop
+            _timer.Start();
+        }
+
+        private void HideNotification()
+        {
+            if (_writerCoroutine != null)
+            {
+                StopCoroutine(_writerCoroutine);
+                _writerCoroutine = null;
+            }
+
+            SetUi(false);
         }
     }
 }

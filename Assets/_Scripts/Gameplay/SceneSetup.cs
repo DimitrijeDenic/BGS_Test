@@ -10,8 +10,17 @@ namespace BGS.Gameplay
         [SerializeField] private Vector2 playerStartPos1, playerStartPos2;
         [SerializeField] private bool camFollowPlayer;
         [SerializeField] private UnityEvent customSetup;
+
         private void Start()
         {
+            if (GameManager.Instance.firstLoad)
+            {
+                Player.Instance.transform.position = Vector3.zero;
+                GameManager.Instance.firstLoad = false;
+                GameManager.Instance.interactionManager.SetTimedNotification("Explore the house and go to the shop");
+                return;
+            }
+            
             _camera = Camera.main;
 
             if (GameManager.Instance.isOutside)
