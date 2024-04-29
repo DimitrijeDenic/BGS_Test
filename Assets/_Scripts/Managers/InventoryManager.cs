@@ -28,23 +28,23 @@ namespace BGS.Managers
 
         private void Start()
         {
-            _itemUtil = new ItemUtil(ref _uiItems, ref _itemsInInventory, ref UIPooler, content,false);
+            _itemUtil = new ItemUtil(ref _uiItems, ref _itemsInInventory, ref UIPooler, content, false);
         }
 
         public void AddItem(ItemSo so) => _itemUtil.AddItem(so);
         public void RemoveItem(ItemSo so) => _itemUtil.RemoveItem(so);
         public void ReplaceItem(ItemSo toEquip, ItemSo toStore) => _itemUtil.ReplaceItem(toEquip, toStore);
-        
+
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.I))
-            {
                 inventoryUi.SetActive(!inventoryUi.activeSelf);
-                GameManager.Instance.uiActive = inventoryUi.activeSelf;
-            }
+            
             if (Input.GetKeyDown(KeyCode.Escape))
                 inventoryUi.SetActive(false);
+
+            GameManager.Instance.uiActive = inventoryUi.activeSelf;
         }
     }
 }
